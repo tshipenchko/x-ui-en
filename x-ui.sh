@@ -362,9 +362,9 @@ show_status() {
 show_enable_status() {
     check_enabled
     if [[ $? == 0 ]]; then
-        echo -e "Not installed: ${green}yes${plain}"
+        echo -e "Installed: ${green}yes${plain}"
     else
-        echo -e "Not installed: ${red}no${plain}"
+        echo -e "Installed: ${red}no${plain}"
     fi
 }
 
