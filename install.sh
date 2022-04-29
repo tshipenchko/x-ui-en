@@ -84,20 +84,20 @@ install_x-ui() {
     cd /usr/local/
 
     if  [ $# == 0 ] ;then
-        last_version=$(curl -Ls "https://api.github.com/repos/tshipenchko/x-ui-enreleases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version=$(curl -Ls "https://api.github.com/repos/tshipenchko/x-ui-en/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
             echo -e "${red}Failed to detect the x-ui version. It may be that the Github API limit is exceeded. Please try again later, or manually specify the x-ui version to install.${plain}"
             exit 1
         fi
         echo -e "The latest version of x-ui is detected：${last_version}，installation is started"
-        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz https://github.com/tshipenchko/x-ui-enreleases/download/${last_version}/x-ui-linux-${arch}.tar.gz
+        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz https://github.com/tshipenchko/x-ui-en/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz
         if [[ $? -ne 0 ]]; then
             echo -e "${red}Downloading x-ui failed, please make sure your server can download files from the Github${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://github.com/tshipenchko/x-ui-enreleases/download/${last_version}/x-ui-linux-${arch}.tar.gz"
+        url="https://github.com/tshipenchko/x-ui-en/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz"
         echo -e "Installing x-ui v$1"
         wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz ${url}
         if [[ $? -ne 0 ]]; then
